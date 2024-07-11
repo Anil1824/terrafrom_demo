@@ -1,54 +1,107 @@
-# terrafrom_demo
-To run the terraform code
-First you need to create a access key and secret key in aws and add the values in terraform.tfvars file
+# Terraform Usage Guide
 
-Create one key pair in aws and replace the keypair name in terraform.tfvars file
+## Pre-requisites
 
-Go to the terraformdemo/demo folder and excuete the terraform commands to deploy the resources in aws
+Before running the Terraform code, ensure you have completed the following steps:
 
-terraform init
+1. **AWS Credentials**: Create an access key and secret key in AWS IAM. Add these values in the `terraform.tfvars` file.
 
-terraform plan
+2. **Key Pair**: Create a key pair in AWS EC2. Replace the key pair name in the `terraform.tfvars` file.
 
-terraform apply ---- it will prompt for yes or no you should give yes and press enter for deployment
+## Deployment Steps
 
-After sometime resources will be deployed in aws
+1. **Initialize Terraform:**
 
-verify the resources are deployd or not and delete the resources using below command
+- Navigate to the `terraformdemo/demo` folder and initialize Terraform.
+   ```bash
+   cd terraformdemo/demo
+   terraform init
+2. Plan Terraform Deployment:
 
-terraform destroy
+- Run Terraform plan to preview the changes.
 
-##Docker
+   ```bash
+   terraform plan
+3. Apply Terraform Changes:
 
-to create a docker image
+- Apply the Terraform configuration. During this process, you'll be prompted to confirm the deployment.
 
-go to terraform_demo/simple-docker-image folder and excuete docker commands
+    ```bash
+    terraform apply
 
-docker built -t test .
+- Type yes and press Enter to proceed with the deployment.
 
-to check the image created 
+- After some time, Terraform will deploy the specified resources in AWS.
 
-docker images
+4. Verify Deployment:
 
-to delete the docker image
+- Verify that the resources have been deployed successfully in AWS.
 
-docker rmi <image_id>or<image_name>
+5. Destroy Resources (Optional):
 
-to create the container
+     If you want to delete the deployed resources, use the following
+   command:
+      ```bash
+      terraform destroy
 
-docker run -d -p 80:80 <image_id>or<image_name>
+- This command will remove all resources created by Terraform.
 
-to stop the container
+Note: Be cautious when running terraform destroy as it will delete all resources managed by Terraform.
 
-docker stop <container_id>or<container_name>
+## Docker Usage Guide
 
-to delete the container
+### Creating a Docker Image
 
-docker rm <container_id>or<container_name>
+To create a Docker image:
+
+1. Navigate to the `terraform_demo/simple-docker-image` folder.
+2. Execute the following Docker build command:
+
+   ```bash
+   docker build -t test .
+
+### Managing Docker Images
+
+1. To check the list of Docker images:
+
+   ```bash
+   docker images
+
+2. To delete a Docker image:
+
+   ```bash
+   docker rmi <image_id_or_name>
+
+### Creating and Managing Docker Containers
+
+1. To create a Docker container from the image:
+
+   ```bash
+   docker run -d -p 80:80 <image_id_or_name>
+
+2. To stop a running Docker container:
+
+   ```bash
+   docker stop <container_id_or_name>
+
+3. To delete a Docker container:
+
+   ```bash
+   docker rm <container_id_or_name>
 
 
-to go inside the running container
+### Accessing a Running Container
 
-docker exec -it <container_id>or<container_name> /bin/bash
+1. To access a shell inside a running container:
 
-type exit to exit from the container
+   ```bash
+   docker exec -it <container_id_or_name> /bin/bash
+
+2. To exit from container's shell, type:
+
+   ```bash
+   exit
+
+### Summary
+
+- These commands enable you to efficiently manage Docker images and containers, from creation to deletion, and to access and interact with containers as needed.
